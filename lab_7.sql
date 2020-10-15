@@ -34,6 +34,9 @@ AVG(DATEDIFF(return_date, rental_date)) OVER (PARTITION BY rental_id) AS 'avg_re
 FROM sakila.rental 
 WHERE 'total_rental'>'avg_rental';
 
+#after felipe explanation
+select * from (select inventory_id, rental_id, datediff(return_date, rental_date) rental_duration, avg(datediff(return_date, rental_date)) 
+over (partition by inventory_id) average from rental) as smth where rental_duration > average;
 
 
 
